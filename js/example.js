@@ -7,7 +7,7 @@ let fg = "#f1f1f1";
 let font;
 
 function preload() {
-  font = loadFont("InknutAntiqua-Regular.ttf");
+  font = loadFont("assets/fonts/InknutAntiqua-Regular.ttf");
 }
 
 function setup() {
