@@ -32,7 +32,7 @@ canvas {
 
 /*Barra de navegação*/
 nav {
-  margin: 2%; 
+  margin: 2%;
 }
 
 /*Barra de navegação (LINKS)*/
@@ -45,23 +45,4 @@ nav > a {
   /*Container*/
   border: 2px var(--white) solid;
   padding: 5px 10px;
-}
-
-
-
-.scroll-container {
-  width: 300px; /* Set your desired width */
-  height: 100px; /* Set your desired height */
-  overflow: hidden;
-  border: 1px solid #ccc;
-  position: relative;
-}
-
-.scroll-content {
-  white-space: nowrap;
-  position: absolute;
-  color: var(--white);
-  top: 0;
-  left: 0;
-  user-select: none;
 }
