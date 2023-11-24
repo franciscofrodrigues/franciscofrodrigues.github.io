@@ -39,9 +39,6 @@ function setup() {
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––PROPRIEDADES TEXTO + IMAGEM
   imageMode(CENTER);
   textFont(font);
-  textAlign(LEFT, CENTER);
-  textSize(20);
-  textWrap(WORD);
 
   objectAng = PI / 6;
   imageW = 500;
@@ -115,11 +112,12 @@ function draw() {
   }
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––DESCRIÇÃO SOBRE MIM
   push();
-  //Propriedades Texto
   fill(255);
-  translate(width / 2, height / 2, 0);
+  textAlign(LEFT, CENTER);
+  textSize(20);
+  textWrap(WORD);
+  translate(width / 2-width/4, height / 2, 0);
 
-  //Texto
   text(txt, 0, 0, width - width / 2);
   pop();
 }
