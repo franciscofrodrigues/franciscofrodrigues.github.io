@@ -12,7 +12,7 @@ let lockPosition = 0;
 function preload() {
   font = loadFont("assets/fonts/InknutAntiqua-Regular.ttf");
   img[0] = loadImage("assets/images/pai.jpg");
-  img[1] = loadImage("assets/images/eu.jpg");
+  // img[1] = loadImage("assets/images/eu.jpg");
 }
 
 function setup() {
@@ -87,8 +87,4 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-}
-
-function mousePressed(){
-  lockPosition = 0;
 }
