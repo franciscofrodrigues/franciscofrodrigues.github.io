@@ -7,7 +7,7 @@
 /*Definir a tipografia*/
 @font-face {
   font-family: Goudy;
-  src: url(InknutAntiqua-Light.ttf) format("ttf");
+  src: url(assets/fonts/InknutAntiqua-Light.ttf) format("ttf");
 }
 
 html,
