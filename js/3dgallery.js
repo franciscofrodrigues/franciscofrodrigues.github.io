@@ -4,6 +4,7 @@ let txt =
 let info =
   "Desloque a página\n para me conhecer a mim \ne a algum do meu trabalho";
 let font;
+let textSizeFactor = 0.025;
 
 //ARRAY DE IMAGENS
 let img = [];
@@ -58,6 +59,8 @@ function setup() {
 function draw() {
   clear();
 
+  updateTextSize();
+
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––COR DO BODY
   lerpedColor = lerpColor(fromColor, toColor, map(lockPosition, 0, 1500, 0, 1));
   currentColor = lerpedColor;
@@ -106,7 +109,6 @@ function draw() {
     fill(textColor);
     translate(width / 2, height / 2 + height / 4, 0);
     textAlign(CENTER, CENTER);
-    textSize(14);
     text(info, 0, 0);
     pop();
   }
@@ -114,7 +116,6 @@ function draw() {
   push();
   fill(255);
   textAlign(LEFT, CENTER);
-  textSize(20);
   textWrap(WORD);
   translate(width / 2-width/4, height / 2, 0);
 
@@ -125,14 +126,30 @@ function draw() {
 //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––REDIMENSIONAR CANVAS COM BASE NO VIEWPORT
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  updateTextSize();
+}
+
+function updateTextSize() {
+  let textSizeValue = min(width, height) * textSizeFactor;
+  textSize(textSizeValue);
 }
 
 //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––EVENTO DE SCROLL
 function mouseWheel(event) {
+  handleScroll(event.delta);
+}
+
+function touchMoved() {
+  let deltaY = mouseY - pmouseY;
+  let scrollFactor = 10;
+  handleScroll(deltaY * scrollFactor);
+  return false;
+}
+
+function handleScroll(delta) {
   if (lockPosition <= 0) lockPosition = 0;
   if (lockPosition >= 35000) lockPosition = 0;
 
-  console.log(lockPosition);
-  lockPosition += event.delta * 0.7;
+  lockPosition += delta * 0.7;
   return false;
 }
