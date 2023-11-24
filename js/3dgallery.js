@@ -1,21 +1,30 @@
+//TEXTO
 let txt =
   "O meu nome é Francisco Rodrigues tenho 21 anos, sou de Pombal, Leiria. \nAtualmente estou a tirar Mestrado em Design e Multimédia, na Universidade de Coimbra.";
+let info =
+  "Desloque a página\n para me conhecer a mim \ne a algum do meu trabalho";
 let font;
 
+//ARRAY DE IMAGENS
 let img = [];
 let numberImages = 21;
+let imageW;
 
+//POSICIONAMENTO IMAGENS
 let randomX = [];
 let intervalZ = -1500;
 let objectAng;
 
+//POSIÇÃO SCROLL
 let lockPosition = 0;
 
+//HTML BODY BACKGROUND
 let fromColor;
 let toColor;
 let currentColor;
 let lerpedColor;
 
+//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––PRELOAD
 function preload() {
   font = loadFont("assets/fonts/InknutAntiqua-Regular.ttf");
 
@@ -27,15 +36,15 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 
+  //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––PROPRIEDADES TEXTO + IMAGEM
   imageMode(CENTER);
-  rectMode(CENTER, CENTER);
   textFont(font);
   textAlign(LEFT, CENTER);
   textSize(20);
   textWrap(WORD);
 
   objectAng = PI / 6;
-  let imageW = 500;
+  imageW = 500;
 
   for (let i = 0; i < img.length; i++) {
     img[i].resize(imageW, 0);
@@ -86,7 +95,6 @@ function draw() {
       }
 
       image(img[i], 0, 0);
-
       pop();
     }
   }
@@ -95,25 +103,20 @@ function draw() {
     push();
     let textOpacity = map(lockPosition, 0, 300, 255, 0);
 
-    const textColor = color(255);
+    let textColor = color(255);
     textColor.setAlpha(textOpacity);
 
     fill(textColor);
     translate(width / 2, height / 2 + height / 4, 0);
     textAlign(CENTER, CENTER);
-    textSize(20);
-    text(
-      "Desloque a página\n para me conhecer a mim \ne algum do meu trabalho",
-      0,
-      0
-    );
+    textSize(14);
+    text(info, 0, 0);
     pop();
   }
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––DESCRIÇÃO SOBRE MIM
   push();
   //Propriedades Texto
   fill(255);
-
   translate(width / 2, height / 2, 0);
 
   //Texto
@@ -121,10 +124,12 @@ function draw() {
   pop();
 }
 
+//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––REDIMENSIONAR CANVAS COM BASE NO VIEWPORT
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
+//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––EVENTO DE SCROLL
 function mouseWheel(event) {
   if (lockPosition <= 0) lockPosition = 0;
   if (lockPosition >= 35000) lockPosition = 0;

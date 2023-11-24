@@ -51,7 +51,7 @@ nav {
   top: 0;
   left: 0;
 
-  width: 200px;
+  width: 20%;
   transition: left 0.5s ease-out;
 
   /*Container*/
@@ -65,13 +65,15 @@ nav {
   align-items: end;
   flex-direction: column;
 
+  width: 20%;
+
   position: fixed;
   top: 0;
-  left: 0;
+  left: 2%;
 }
 
 #contactLinks > a {
-  width: 200px;
+  width: 100%;  
 
   /*Container*/
   border: 2px var(--white) solid;
