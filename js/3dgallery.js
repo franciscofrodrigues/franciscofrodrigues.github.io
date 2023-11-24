@@ -29,13 +29,14 @@ let lerpedColor;
 function preload() {
   font = loadFont("assets/fonts/InknutAntiqua-Regular.ttf");
 
-  for (let i = 0; i < numberImages; i++) {
-    img[i] = loadImage("assets/images/" + i + ".jpeg");
-  }
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+
+  for (let i = 0; i < numberImages; i++) {
+    img[i] = loadImage("assets/images/" + i + ".jpeg");
+  }
 
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––PROPRIEDADES TEXTO + IMAGEM
   imageMode(CENTER);
@@ -129,6 +130,7 @@ function windowResized() {
   updateTextSize();
 }
 
+//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––TAMANHO DO TEXTO DEPENDENTE DO VIEWPORT
 function updateTextSize() {
   let textSizeValue = min(width, height) * textSizeFactor;
   textSize(textSizeValue);
@@ -141,7 +143,7 @@ function mouseWheel(event) {
 
 function touchMoved() {
   let deltaY = mouseY - pmouseY;
-  let scrollFactor = 10;
+  let scrollFactor = 4;
   handleScroll(deltaY * scrollFactor);
   return false;
 }
