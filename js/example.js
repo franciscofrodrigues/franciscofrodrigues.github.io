@@ -7,11 +7,9 @@ let white = "#f1f1f1";
 
 let font;
 
-let lockPosition = 0;
-
 function preload() {
   font = loadFont("assets/fonts/InknutAntiqua-Regular.ttf");
-  img[0] = loadImage("assets/images/pai.jpg");
+  img[0] = loadImage("assets/images/eu.jpg");
   // img[1] = loadImage("assets/images/eu.jpg");
 }
 
@@ -27,7 +25,6 @@ function setup() {
 
   let res = 200;
   img[0].resize(res, res);
-  img[1].resize(res, res);
 }
 
 function draw() {
