@@ -1,0 +1,67 @@
+/*Variaveis Globais*/
+:root {
+  --white: #f1f1f1;
+  --black: #000000;
+}
+
+/*Definir a tipografia*/
+@font-face {
+  font-family: Goudy;
+  src: url(InknutAntiqua-Light.ttf) format("ttf");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--black);
+}
+
+/*Canvas P5js*/
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+/*Barra de navegação*/
+nav {
+  margin: 2%; 
+}
+
+/*Barra de navegação (LINKS)*/
+nav > a {
+  /*Texto*/
+  color: var(--white);
+  text-decoration: none;
+  text-align: center;
+
+  /*Container*/
+  border: 2px var(--white) solid;
+  padding: 5px 10px;
+}
+
+
+
+.scroll-container {
+  width: 300px; /* Set your desired width */
+  height: 100px; /* Set your desired height */
+  overflow: hidden;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.scroll-content {
+  white-space: nowrap;
+  position: absolute;
+  color: var(--white);
+  top: 0;
+  left: 0;
+  user-select: none;
+}
