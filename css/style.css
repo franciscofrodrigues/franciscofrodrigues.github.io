@@ -18,7 +18,7 @@ body {
 }
 
 body {
-  background-color: var(--black);
+  background-color: #E55812;
 }
 
 /*Canvas P5js*/
@@ -30,19 +30,51 @@ canvas {
   z-index: -2;
 }
 
-/*Barra de navegação*/
-nav {
-  margin: 2%;
-}
-
-/*Barra de navegação (LINKS)*/
-nav > a {
-  /*Texto*/
+a {
   color: var(--white);
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
+}
+
+/*Barra de navegação*/
+nav {
+  margin: 2% 2% 0 2%;
+  position: relative;
+  width: 96%;
+  height: 70px;
+}
+
+/*Barra de navegação (LINKS)*/
+#contacts {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 200px;
+  transition: left 0.5s ease-out;
 
   /*Container*/
   border: 2px var(--white) solid;
   padding: 5px 10px;
+}
+
+#contactLinks {
+  margin: 2% 2% 0 2%;
+  display: none;
+  align-items: end;
+  flex-direction: column;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#contactLinks > a {
+  width: 200px;
+
+  /*Container*/
+  border: 2px var(--white) solid;
+  padding: 5px 10px;
+  margin-bottom: 2%;
 }

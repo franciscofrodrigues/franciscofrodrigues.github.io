@@ -1,18 +1,20 @@
 let txt =
-  "O meu nome é Francisco Rodrigues tenho 21 anos, sou licenciado em Design e Multimédia";
+  "O meu nome é Francisco Rodrigues tenho 21 anos, sou de Pombal, Leiria. \nAtualmente estou a tirar Mestrado em Design e Multimédia, na Universidade de Coimbra.";
+let font;
 
 let img = [];
-let numberImages = 4;
+let numberImages = 21;
 
 let randomX = [];
 let intervalZ = -1500;
 let objectAng;
 
-let white = "#f1f1f1";
-
-let font;
-
 let lockPosition = 0;
+
+let fromColor;
+let toColor;
+let currentColor;
+let lerpedColor;
 
 function preload() {
   font = loadFont("assets/fonts/InknutAntiqua-Regular.ttf");
@@ -28,21 +30,33 @@ function setup() {
   imageMode(CENTER);
   rectMode(CENTER, CENTER);
   textFont(font);
-  textAlign(CENTER, CENTER);
-  textSize(12);
+  textAlign(LEFT, CENTER);
+  textSize(20);
   textWrap(WORD);
 
-  objectAng = PI/6;
+  objectAng = PI / 6;
   let imageW = 500;
 
   for (let i = 0; i < img.length; i++) {
     img[i].resize(imageW, 0);
     randomX[i] = random(width / 4, width / 2);
   }
+
+  //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––LERPCOLOR
+  fromColor = color(53, 82, 74);
+  toColor = color(0, 0, 0);
+
+  currentColor = fromColor;
 }
 
 function draw() {
   clear();
+
+  //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––COR DO BODY
+  lerpedColor = lerpColor(fromColor, toColor, map(lockPosition, 0, 1500, 0, 1));
+  currentColor = lerpedColor;
+
+  document.body.style.backgroundColor = currentColor;
 
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––CÂMERA E PRESPECTIVA
   perspective(PI / 2.9, float(width / height), 1, 100000);
@@ -51,45 +65,59 @@ function draw() {
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––TRANSFORMAÇÕES INICIAIS
   translate(-windowWidth / 2, -windowHeight / 2, lockPosition);
 
-  //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––GUIDES
-  // //Linhas
-  // stroke("#ff0000");
-  // line(0, height / 2, width, height / 2);
-  // line(width / 2, 0, width / 2, height);
-
-  // //Rectângulo Central
-  // push();
-  // fill("#ff0000");
-  // noStroke();
-  // rect(width / 2, height / 2, 10, 10);
-  // pop();
-
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––IMAGENS
-  for (let i = 0; i < img.length; i++) {
-    if(lockPosition<=800) tint(0,20);
-    push();
-    if (i % 2 === 0) {
-      translate(width / 2 - randomX[i], height / 2, intervalZ + (intervalZ * i));
-      rotateY(objectAng);
-    } else {
-      translate(width / 2 + randomX[i], height / 2, intervalZ + (intervalZ * i));
-      rotateY(-objectAng);
+  if (lockPosition >= 800) {
+    for (let i = 0; i < img.length; i++) {
+      push();
+      if (i % 2 === 0) {
+        translate(
+          width / 2 - randomX[i],
+          height / 2,
+          intervalZ + intervalZ * i
+        );
+        rotateY(objectAng);
+      } else {
+        translate(
+          width / 2 + randomX[i],
+          height / 2,
+          intervalZ + intervalZ * i
+        );
+        rotateY(-objectAng);
+      }
+
+      image(img[i], 0, 0);
+
+      pop();
     }
-
-    image(img[i], 0, 0);
-
-    pop();
   }
 
+  if (lockPosition <= 500) {
+    push();
+    let textOpacity = map(lockPosition, 0, 300, 255, 0);
+
+    const textColor = color(255);
+    textColor.setAlpha(textOpacity);
+
+    fill(textColor);
+    translate(width / 2, height / 2 + height / 4, 0);
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    text(
+      "Desloque a página\n para me conhecer a mim \ne algum do meu trabalho",
+      0,
+      0
+    );
+    pop();
+  }
   //––––––––––––––––––––––––––––––––––––––––––––––––––––––––––DESCRIÇÃO SOBRE MIM
   push();
   //Propriedades Texto
-  fill(white);
+  fill(255);
 
-  translate(width / 2, height/2, 0);
+  translate(width / 2, height / 2, 0);
 
   //Texto
-  text(txt, 0, 0, 200);
+  text(txt, 0, 0, width - width / 2);
   pop();
 }
 
@@ -98,7 +126,10 @@ function windowResized() {
 }
 
 function mouseWheel(event) {
-  lockPosition += event.delta * 0.7;
+  if (lockPosition <= 0) lockPosition = 0;
+  if (lockPosition >= 35000) lockPosition = 0;
+
   console.log(lockPosition);
+  lockPosition += event.delta * 0.7;
   return false;
 }
