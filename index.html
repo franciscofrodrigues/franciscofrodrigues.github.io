@@ -1,28 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>Francisco Rodrigues</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="js/lib/p5.min.js"></script>
-  </head>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
 
-  <body>
+    <title>DW – Exercício 2</title>
+</head>
+
+<body>
+    <!-- Barra de navegação -->
     <nav>
-      <a id="contacts">Contactos</a><!--BOTÃO QUE MOSTRA OS CONTACTOS-->
+        <div>
+            <p class="description">Tipo de Atividade:</p>
+            <div class="button">
+                <input type="checkbox" id="bicicleta" name="activityType" value="Ride">
+                <label for="bicicleta">Bicicleta</label>
+            </div>
+            <div class="button">
+                <input type="checkbox" id="corrida" name="activityType" value="Run">
+                <label for="corrida">Corrida</label>
+            </div>
+        </div>
+        <div>
+            <p class="description">Ordenar por:</p>
+            <div class="button">
+                <input type="radio" id="date" name="order" checked>
+                <label for="date">Data</label>
+            </div>
+            <div class="button">
+                <input type="radio" id="distance" name="order">
+                <label for="distance">Distância</label>
+            </div>
+        </div>
+        <div>
+            <p class="description">Modo de visualização:</p>
+            <div class="button">
+                <input type="radio" id="listLayout" name="layout">
+                <label for="listLayout">Lista</label>
+            </div>
+            <div class="button">
+                <input type="radio" id="gridLayout" name="layout" checked>
+                <label for="gridLayout">Grelha</label>
+            </div>
+        </div>
     </nav>
 
-    <div id="contactLinks"><!--LINKS PESSOAIS-->
-      <a href="https://github.com/franciscofrodrigues">GitHub</a>
-      <a href="https://www.instagram.com/franciscorodrigues.28/">Instagram</a>
-      <a href="mailto:franciscofrodrigues28@gmail.com">Mail</a>
-    </div>
+    <!-- Conteúdo Principal -->
+    <main>
+        <div id="activities_list"></div> <!-- Lista de atividades -->
+        <div id="activities_grid"></div> <!-- Grelha de atividades -->
+    </main>
 
-    <script src="js/3dgallery.js"></script><!--GALERIA 3D (SKETCH P5)-->
-    <script src="js/runawayButton.js"></script><!--BOTÃO QUE MOSTRA OS CONTACTOS-->
-  </body>
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/activity.js"></script>
+</body>
+
 </html>
